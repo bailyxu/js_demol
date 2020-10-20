@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>mp3</title>
+<script type="text/javascript" src="binaryajax.js"></script>
+<script type="text/javascript" src="id3.js"></script>
+<script type="text/javascript">
+    //id3v2文件
+	var file = "Isobel Campbell - Are You Going to Leave Me.mp3";
+
+	//id3v1文件
+	//var file = "11.025kHz_64Kbps_DC(2.5).mp3";
+
+    // 定义回调函数
+    function mycallback() {
+     console.log( JSON.stringify(ID3.getAllTags(file)));
+    }
+
+    ID3.loadTags(file, mycallback);
+
+</script>
+</head>
+</html>
