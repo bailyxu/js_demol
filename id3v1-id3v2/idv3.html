@@ -5,20 +5,54 @@
 <title>mp3</title>
 <script type="text/javascript" src="binaryajax.js"></script>
 <script type="text/javascript" src="id3.js"></script>
-<script type="text/javascript">
-    //id3v2文件
-	var file = "Isobel Campbell - Are You Going to Leave Me.mp3";
-
-	//id3v1文件
-	//var file = "11.025kHz_64Kbps_DC(2.5).mp3";
-
-    // 定义回调函数
-    function mycallback() {
-     console.log( JSON.stringify(ID3.getAllTags(file)));
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<style>
+    #id3 {
+        background: #faf;
     }
 
-    ID3.loadTags(file, mycallback);
+    #id1 {
+        background: #faa;
+        margin-top:20px;
+    }
 
+    #id2 {
+        background: #eaa;
+        margin-top:20px;
+    }
+</style>
+<body>
+    <pre id="id3"></pre>
+    <pre id="id2"></pre>
+    <pre id="id1"></pre>
+
+    <script type="text/javascript">
+
+    //id3v2文件
+	var file = "Isobel Campbell - Are You Going to Leave Me.mp3";
+	var file2 = "Ìïð¥Õç - 04.²»×í²»»á.mp3";
+
+	//id3v1文件
+	var file1 = "11.025kHz_64Kbps_DC(2.5).mp3";
+
+    ID3.loadTags(file, ()=> {
+        var fileContent = ID3.getAllTags(file)
+        console.log(fileContent);
+        $("#id3").text(JSON.stringify(fileContent, null, 4));
+    });
+
+    ID3.loadTags(file2, ()=> {
+        var fileContent = ID3.getAllTags(file2)
+        console.log(fileContent);
+        $("#id2").text(JSON.stringify(fileContent, null, 4));
+    });
+
+    ID3.loadTags(file1, ()=> {
+        var fileContent = ID3.getAllTags(file1)
+        console.log(fileContent);
+        $("#id1").text(JSON.stringify(fileContent, null, 4));
+    });
 </script>
-</head>
+</body>
 </html>
